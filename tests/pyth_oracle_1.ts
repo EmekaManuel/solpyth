@@ -87,6 +87,36 @@ describe("pyth_oracle_1", () => {
       }),
       { skipPreflight: true }
     );
+    // Display current BTC price using the same logic as our script
+    console.log("\n🔍 Fetching BTC/USD price from Pyth Network...\n");
+    
+    try {
+      const priceFeeds = await priceServiceConnection.getLatestPriceFeeds([BTC_PRICE_FEED_ID]);
+      
+      if (priceFeeds && priceFeeds.length > 0) {
+        const priceFeed = priceFeeds[0];
+        const price = priceFeed.getPriceUnchecked();
+        
+        console.log("=== BTC/USD PRICE DATA ===");
+        console.log(`Raw Price: ${price.price}`);
+        console.log(`Confidence: ${price.conf}`);
+        console.log(`Exponent: ${price.expo}`);
+        console.log(`Publish Time: ${new Date(price.publishTime * 1000).toISOString()}`);
+        
+        // Calculate actual price
+        const actualPrice = Number(price.price) * Math.pow(10, price.expo);
+        console.log(`\n💰 Current BTC/USD Price: $${actualPrice.toLocaleString()}`);
+        
+        // Calculate confidence interval
+        const confidence = Number(price.conf) * Math.pow(10, price.expo);
+        console.log(`📊 Confidence Interval: ±$${confidence.toLocaleString()}`);
+        console.log(`📈 Price Range: $${(actualPrice - confidence).toLocaleString()} - $${(actualPrice + confidence).toLocaleString()}`);
+        console.log("");
+      }
+    } catch (error) {
+      console.error("Error fetching price data:", error);
+    }
+
     for (const signature of txs) {
       try {
         const tx = await connection.getTransaction(
