@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 use pyth_solana_receiver_sdk::price_update::{get_feed_id_from_hex, PriceUpdateV2};
 
-declare_id!("9SMGYiwFdtVUvCZzmwUtxT3aDfcPkY954b5CZs7H4XZ");
+declare_id!("B7KXuYt1xr1K7TBbkygzXHAGstANyp49GBz9gAJ5CZsb");
 
 #[derive(Accounts)]
 #[instruction(id:String)]
