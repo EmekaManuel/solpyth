@@ -1,14 +1,11 @@
 import * as anchor from "@coral-xyz/anchor";
-import { Program } from "@coral-xyz/anchor";
-import { PythOracle1 } from "../target/types/pyth_oracle_1";
-import {
-  PythSolanaReceiver,
-  InstructionWithEphemeralSigners,
-} from "@pythnetwork/pyth-solana-receiver";
-import * as buffer from "buffer";
-import { AnchorProvider, BN, Wallet } from "@coral-xyz/anchor";
+import { Program, Wallet } from "@coral-xyz/anchor";
 import { PriceServiceConnection } from "@pythnetwork/price-service-client";
-import { Transaction } from "@solana/web3.js";
+import {
+  InstructionWithEphemeralSigners,
+  PythSolanaReceiver,
+} from "@pythnetwork/pyth-solana-receiver";
+import { PythOracle1 } from "../target/types/pyth_oracle_1";
 const {
   SystemProgram,
   Keypair,
