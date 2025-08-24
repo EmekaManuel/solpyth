@@ -6,14 +6,14 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-pyth_oracle_1 = "2UA3M6dSJQjrfTdzAiL2vMvubWoch1nTXK5TRaNGuiY4"
+pyth_oracle_1 = "9SMGYiwFdtVUvCZzmwUtxT3aDfcPkY954b5CZs7H4XZ"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "devnet"
-wallet = "~/.config/solana/id.json"
+cluster = "https://devnet.helius-rpc.com/?api-key=bdb45793-138e-4ff8-b8f4-cd7dba5545df"
+wallet = "./new_id.json"
 
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
